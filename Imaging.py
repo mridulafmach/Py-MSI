@@ -1,11 +1,29 @@
 from PIL import Image
+import numpy as np
+from numpy import inf
+
+################################ Function load image
+'''Open image in python'''
 
 im = Image.open('wood.png').convert('L')
 im = np.array(im)
 
-#####  Entropy
-from numpy import inf
-import numpy as np
+################################# Image slicer
+'''Slice big picture into nu. of small blocks'''
+
+import image_slicer
+image_slicer.slice('huge_test_image.png', 14)
+
+############################### Histogram plot
+'''Image histogram plot'''
+
+figure()
+hist(im.flatten(),128)
+show()
+
+###################################  Entropy
+'''Function to calculate entropy from GCLM'''
+
 
 def entropy(g):
     con1 = -g
@@ -23,7 +41,7 @@ np.sum(np.multiply(con,con))
 
 #########
 
-d = np.arange(3,61,3)
+d = np.arange(3,42,3)
 a = [0, np.pi/4, np.pi/2, 3*np.pi/4]
 
 contrast = np.zeros(shape=(d.size,len(a)))
